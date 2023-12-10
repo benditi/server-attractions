@@ -13,7 +13,7 @@ function readDatabase(fileName: string) {
 
 function writeDatabase(data: any, fileName: string) {
   try {
-    secondFs.writeFileSync(databasePath, JSON.stringify(data, null, 2));
+    secondFs.writeFileSync(fileName, JSON.stringify(data, null, 2));
   } catch (err) {
     console.log("error", err);
   }

@@ -1,5 +1,6 @@
 import database from "../../services/database.service";
 import secondPath from "path";
+import { getTodaysDate } from "../../services/utils.service";
 const datePath = secondPath.join(
   __dirname,
   "../..",
@@ -34,12 +35,23 @@ export async function seedAttractions() {
 }
 
 export async function callSeedAttraction() {
-  let date = database.readDatabase(datePath);
-  console.log("datePath", datePath);
-
-  console.log("date", date);
-  if (!date || !date.length) {
-    console.log("inside (new Date()).getDate()", new Date().getDate());
-    database.writeDatabase({ date: 10 }, datePath);
+  let data = database.readDatabase(datePath);
+  let todayDate = getTodaysDate();
+  console.log("todayDate", todayDate);
+  if (!data || !data.date) {
+    console.log("inside first");
+    await seedAttractions()
+    database.writeDatabase({ date: todayDate }, datePath);
+    return
   }
+  if (data.date===todayDate){
+    console.log("inside same day");
+    return
+  }
+    await seedAttractions()
+    database.writeDatabase({ date: todayDate }, datePath);
+}
+
+export function callFunctionEveryMinute(func:()=>void){
+  let intervalId = setInterval(func, 1000*10)
 }

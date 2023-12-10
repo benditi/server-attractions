@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import taskRoutes from "./api/tasks";
 import cors from "cors";
 import attractionRoutes from "./api/attraction/attraction.routes";
-import { callSeedAttraction, seedAttractions } from "./api/attraction/attraction.service";
+import { callFunctionEveryMinute, callSeedAttraction, seedAttractions } from "./api/attraction/attraction.service";
 
 const app = express();
 const port = process.env.PORT || 3030;
@@ -33,6 +33,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+callFunctionEveryMinute(callSeedAttraction)
 
-seedAttractions() // this function is async
-callSeedAttraction()
