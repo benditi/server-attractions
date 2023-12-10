@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import taskRoutes from "./api/tasks";
 import cors from "cors";
 import attractionRoutes from "./api/attraction/attraction.routes";
-import { seedAttractions } from "./api/attraction/attraction.service";
+import { callSeedAttraction, seedAttractions } from "./api/attraction/attraction.service";
 
 const app = express();
 const port = process.env.PORT || 3030;
@@ -35,3 +35,4 @@ app.listen(port, () => {
 });
 
 seedAttractions() // this function is async
+callSeedAttraction()
