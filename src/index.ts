@@ -22,11 +22,7 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-app.use("/tasks", taskRoutes);
 app.use("/api/attraction", attractionRoutes);
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, TypeScript Express!");
-});
 
 // Add this error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
