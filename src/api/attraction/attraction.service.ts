@@ -10,7 +10,6 @@ const datePath = secondPath.join(
 
 export async function seedAttractions() {
   try {
-    console.log("inside seedAttractions");
     let data = {
       resource_id: "967a8a23-c08c-4c47-b39d-ce350537821b", // the resource id
       limit: 40, // get 40 results
@@ -22,7 +21,6 @@ export async function seedAttractions() {
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
     );
@@ -37,21 +35,19 @@ export async function seedAttractions() {
 export async function callSeedAttraction() {
   let data = database.readDatabase(datePath);
   let todayDate = getTodaysDate();
-  console.log("todayDate", todayDate);
   if (!data || !data.date) {
-    console.log("inside first");
-    await seedAttractions()
+    await seedAttractions();
     database.writeDatabase({ date: todayDate }, datePath);
-    return
+    return;
   }
-  if (data.date===todayDate){
-    console.log("inside same day");
-    return
+  if (data.date === todayDate) {
+    return;
   }
-    await seedAttractions()
-    database.writeDatabase({ date: todayDate }, datePath);
+  await seedAttractions();
+  database.writeDatabase({ date: todayDate }, datePath);
 }
 
-export function callFunctionEveryMinute(func:()=>void){
-  let intervalId = setInterval(func, 1000*10)
+export function callFunctionInterval(func: () => void, milliseconds:number) {
+  let intervalId = setInterval(func, milliseconds);
+  return intervalId;
 }
