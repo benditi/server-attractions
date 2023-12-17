@@ -38,3 +38,5 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 callFunctionInterval(callSeedAttraction, 1000 * 60 * 4);
+
+export default app;
