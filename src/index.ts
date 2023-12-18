@@ -16,6 +16,7 @@ app.use(express.json());
 const corsOptions = {
   origin: [
     "https://nextjs-blog-zeta-eosin-57.vercel.app",
+    "https://nextjs-blog-ffsvhkhoa-david-ben-ishais-projects.vercel.app"
   ],
   credentials: true,
 };
