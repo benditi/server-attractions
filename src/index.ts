@@ -13,14 +13,14 @@ const app = express();
 const port = process.env.PORT || 3030;
 app.use(express.json());
 
-const corsOptions = {
-  origin: [
-    "https://nextjs-blog-zeta-eosin-57.vercel.app",
-    "https://nextjs-blog-ffsvhkhoa-david-ben-ishais-projects.vercel.app"
-  ],
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: [
+//     "https://nextjs-blog-zeta-eosin-57.vercel.app",
+//     "https://nextjs-blog-ffsvhkhoa-david-ben-ishais-projects.vercel.app"
+//   ],
+//   credentials: true,
+// };
+app.use(cors());
 
 app.use("/api/attraction", attractionRoutes);
 
