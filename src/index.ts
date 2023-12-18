@@ -15,11 +15,11 @@ app.use(express.json());
 
 const corsOptions = {
   origin: [
-    "*",
+    "nextjs-blog-hw0hnl4yi-david-ben-ishais-projects.vercel.app",
   ],
   credentials: true,
 };
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api/attraction", attractionRoutes);
 
